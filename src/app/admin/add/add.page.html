@@ -1,0 +1,89 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/admin"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Tambah Produk</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form #form="ngForm" (ngSubmit)="onSubmit(form)">
+    <ion-list>
+      <ion-item>
+        <ion-label position="floating">URL Foto</ion-label>
+        <ion-input type="url" ngModel name="photoURL" #photoURLCtrl="ngModel" required></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Jenis</ion-label>
+        <ion-select ngModel name="type" #typeCtrl="ngModel" (ionChange)="onTypeChange(form)" required>
+          <ion-select-option value="RAM">RAM</ion-select-option>
+          <ion-select-option value="CPU">CPU</ion-select-option>
+          <ion-select-option value="GPU">GPU</ion-select-option>
+          <ion-select-option value="Motherboard">Motherboard</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Nama brand</ion-label>
+        <ion-input type="text" ngModel name="brand" #nameCtrl="ngModel" required></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Model</ion-label>
+        <ion-input type="text" ngModel name="model" #brandCtrl="ngModel" required></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Harga</ion-label>
+        <ion-input type="number" ngModel name="price" #priceCtrl="ngModel" required></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Stock</ion-label>
+        <ion-input type="number" ngModel name="stock" #stockCtrl="ngModel" required></ion-input>
+      </ion-item>
+    </ion-list>
+    <p class="ion-padding" style="padding-bottom: 6px;" [ngClass]="type ? (type != 'GPU' ? '' : 'ion-hide') : 'ion-hide'">Detail produk</p>
+    <ion-list [ngClass]="type == 'RAM' ? '' : 'ion-hide'">
+      <ion-item>
+        <ion-label position="floating">Speed</ion-label>
+        <ion-input type="number" ngModel name="speed" #speedCtrl="ngModel"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Size</ion-label>
+          <ion-input type="text" ngModel name="size" #sizeCtrl="ngModel"></ion-input>
+      </ion-item>
+    </ion-list>
+    <ion-list [ngClass]="type == 'CPU' ? '' : 'ion-hide'">
+      <ion-item>
+        <ion-label position="floating">Baseclock</ion-label>
+        <ion-input type="number" ngModel name="baseclock" #baseclockCtrl="ngModel"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Boostclock</ion-label>
+        <ion-input type="number" ngModel name="boostclock" #boostclockCtrl="ngModel"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Core</ion-label>
+        <ion-input type="number" ngModel name="core" #coreCtrl="ngModel"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Thread</ion-label>
+        <ion-input type="number" ngModel name="thread" #threadCtrl="ngModel"></ion-input>
+      </ion-item>
+    </ion-list>
+    <ion-list [ngClass]="type == 'Motherboard' ? '' : 'ion-hide'">
+      <ion-item>
+        <ion-label position="floating">Chipset</ion-label>
+        <ion-input type="text" ngModel name="chipset" #chipsetCtrl="ngModel"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">For Processor</ion-label>
+        <ion-select ngModel name="forProc" #forProcCtrl="ngModel">
+          <ion-select-option value="Intel">Intel</ion-select-option>
+          <ion-select-option value="AMD">AMD</ion-select-option>
+        </ion-select>
+      </ion-item>
+    </ion-list>
+    <ion-button type="submit" color="secondary" expand="block" [disabled]="!form.valid">
+      Add
+    </ion-button>
+  </form>
+</ion-content>

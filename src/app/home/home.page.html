@@ -1,20 +1,58 @@
 <ion-header [translucent]="true">
-  <ion-toolbar>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+        <ion-menu-button menu="sidebar"></ion-menu-button>
+    </ion-buttons>
     <ion-title>
-      Blank
+      Home
     </ion-title>
+    <ion-buttons slot="primary">
+      <ion-button (click)="toggleGridList($event)">
+        <ion-icon slot="icon-only" name="grid-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-  </div>
+<ion-content class="ion-padding list" [ngClass]="status ? 'show' : ''" #listview>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-list>
+          <ion-item *ngFor="let item of itemList" class="item" [ngClass]="item.stock ? 'show' : ''"  [routerLink]="['./', item.id]">
+            <ion-thumbnail slot="start">
+              <img src="{{item.photo}}" />
+            </ion-thumbnail>
+            <ion-label>
+              <h3><b>{{item.brand}}</b> - {{item.name}}</h3>
+              <h4>Rp {{item.price | number:'1.0':'en-US'}}</h4>
+              <p>Tersedia {{item.stock}}</p>
+            </ion-label>
+          </ion-item>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
+
+<ion-content class="ion-padding grid" [ngClass]="status ? '' : 'show'" #gridview>
+  <ion-grid fixed>
+    <ion-row>
+      <ion-col size="6" *ngFor="let item of itemList" class="item" [ngClass]="item.stock ? 'show' : ''">
+        <ion-card [routerLink]="['./', item.id]">
+          <ion-card-header style="min-height:538px;">
+            <ion-img src="{{item.photo}}" style="margin-bottom: 10px;"></ion-img>
+          </ion-card-header>
+          <ion-card-content>
+            <ion-card-title><b>{{item.brand}}</b> - {{item.name}}</ion-card-title>
+            <ion-card-subtitle>Rp {{item.price | number:'1.0':'en-US'}}</ion-card-subtitle>
+            <ion-label>
+              <p>Tersedia {{item.stock}}</p>
+            </ion-label>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>

@@ -1,3 +1,33 @@
-<ion-app>
-  <ion-router-outlet></ion-router-outlet>
-</ion-app>
+<ion-menu side="start" menuId="sidebar" contentId="main">
+  <ion-header>
+    <ion-toolbar color="primary">
+      <ion-title>Menu</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content>
+    <ion-list>
+      <ion-menu-toogle menu="sidebar">
+        <ion-item lines="none" routerLink="/home">
+          <ion-icon slot="start" name="home-outline"></ion-icon>
+          <ion-label>Home</ion-label>
+        </ion-item>
+      </ion-menu-toogle>
+
+      <ion-menu-toogle menu="sidebar">
+        <ion-item lines="none" routerLink="/admin">
+          <ion-icon slot="start" name="person-outline"></ion-icon>
+          <ion-label>Admin</ion-label>
+        </ion-item>
+      </ion-menu-toogle>
+
+      <ion-menu-toogle menu="sidebar">
+        <ion-item lines="none" routerLink="/about">
+          <ion-icon slot="start" name="information-circle-outline"></ion-icon>
+          <ion-label>About</ion-label>
+        </ion-item>
+      </ion-menu-toogle>
+    </ion-list>
+  </ion-content>
+</ion-menu>
+
+<ion-router-outlet id="main"></ion-router-outlet>

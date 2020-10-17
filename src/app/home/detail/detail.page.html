@@ -1,0 +1,58 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Detail</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid fixed>
+    <ion-row>
+      <ion-col><ion-img style="width:45%;" src="{{item.photo}}"></ion-img></ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <h1>{{item.brand}} {{item.name}}</h1>
+        <h5>Rp {{item.price | number:'1.0':'en-US'}}</h5>
+        <p>Tersedia {{item.stock}}</p>
+      </ion-col>
+    </ion-row>
+    <ion-row class="info" [ngClass]="item.type == 'GPU' ? '' : 'show'">
+      <ion-col>
+        <p>Tentang produk</p>
+        <ion-list class="info" [ngClass]="item.type == 'RAM' ? 'show' : ''">
+          <ion-item>
+            Size : {{item.size}}
+          </ion-item>
+          <ion-item>
+            Speed : {{item.speed}} MHz
+          </ion-item>
+        </ion-list>
+        <ion-list class="info" [ngClass]="item.type == 'CPU' ? 'show' : ''">
+          <ion-item>
+            Baseclock : {{item.baseclock}} GHz
+          </ion-item>
+          <ion-item>
+            Boostclock : {{item.boostclock}} GHz
+          </ion-item>
+          <ion-item>
+            Core : {{item.core}}
+          </ion-item>
+          <ion-item>
+            Thread : {{item.thread}}
+          </ion-item>
+        </ion-list>
+        <ion-list class="info" [ngClass]="item.type == 'Motherboard' ? 'show' : ''">
+          <ion-item>
+            Chipset : {{item.chipset}}
+          </ion-item>
+          <ion-item>
+            For Processor : {{item.forProc}}
+          </ion-item>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

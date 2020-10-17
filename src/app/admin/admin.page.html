@@ -1,0 +1,41 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button menu="sidebar"></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Admin</ion-title>
+    <ion-buttons slot="primary">
+      <ion-button [routerLink]="['./add']"><ion-icon name="add-outline"></ion-icon></ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col size="12" size-sm="8" offset-sm="2">
+        <ion-list>
+          <ion-item-sliding *ngFor="let item of itemList" class="item" #slidingItem>
+            <ion-item [routerLink]="['./', item.id]">
+              <ion-thumbnail slot="start">
+                <img src="{{item.photo}}" />
+              </ion-thumbnail>
+              <ion-label>
+                <h3><b>{{item.brand}}</b> - {{item.name}}</h3>
+                <h4>Rp {{item.price | number:'1.0':'en-US'}}</h4>
+                <p>Tersedia {{item.stock}}</p>
+              </ion-label>
+            </ion-item>
+            <ion-item-options side="start" [routerLink]="['./', item.id]">
+              <ion-item-option color="secondary"  (click)="onEdit(item, slidingItem)"><ion-icon size="large" name="create-outline"></ion-icon></ion-item-option>
+            </ion-item-options>
+        
+            <ion-item-options side="end">
+              <ion-item-option color="danger" (click)="presentAlert(item, slidingItem)"><ion-icon size="large" name="trash-outline"></ion-icon></ion-item-option>
+            </ion-item-options>
+          </ion-item-sliding>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
