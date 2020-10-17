@@ -2,7 +2,8 @@
 
 Created By :
 Yunika Laurensia Winoto (22203)
-Link : 
+Github: https://github.com/yunika5699/UTS_Mobile
+Hosting : https://uts-mobile.vercel.app/home
 
 How to run the application:
 - Make sure to have npm and ionic installed 
